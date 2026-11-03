@@ -1,7 +1,6 @@
 # pymmcore-spectraphysics-laser
 
-Spectra-Physics **InSight / DeepSee** tunable laser for
-[pymmcore-plus](https://github.com/pymmcore-plus/pymmcore-plus) /
+[pymmcore-plus](https://github.com/pymmcore-plus/pymmcore-plus) plugin to control Spectra-Physics **InSight / DeepSee** tunable lasers through
 [napari-micromanager](https://github.com/pymmcore-plus/napari-micromanager):
 
 * `LaserController` - the serial (pyvisa) interface (power, wavelength,
