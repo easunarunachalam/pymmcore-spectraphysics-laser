@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pymmcore-spectraphysics-laser"
+version = "0.1.0"
+description = "Spectra-Physics InSight / DeepSee tunable laser: serial control, a Python Micro-Manager device and a Qt panel for pymmcore-plus / napari-micromanager"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Easun Arunachalam" }]
+classifiers = [
+    "Framework :: napari",
+    "Programming Language :: Python :: 3",
+    "Operating System :: Microsoft :: Windows",
+]
+dependencies = [
+    # UniMMCore (Python devices) is still under pymmcore_plus.experimental:
+    # 0.17 added config groups / cfg files with Python devices, 0.18 the
+    # "Position" property handling in the MDA engine.  Bump deliberately.
+    "pymmcore-plus>=0.18.1,<0.19",
+    "pyvisa",
+    "pyvisa-py",
+    "pyserial",
+]
+
+[project.optional-dependencies]
+# the LaserControlWidget (Qt) and the napari plugin entry
+napari = [
+    "qtpy",
+    "superqt",
+    "fonticon-materialdesignicons6",
+    "napari>=0.5",
+    "napari-micromanager>=0.3.1,<0.4",
+    # the preset-dropdown workaround patches a private method of this version
+    "pymmcore-widgets>=0.12,<0.13",
+]
+test = ["pytest", "pytest-qt"]
+
+# napari discovers the plugin through this entry point (npe2 manifest).
+[project.entry-points."napari.manifest"]
+pymmcore-spectraphysics-laser = "pymmcore_spectraphysics_laser:napari.yaml"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pymmcore_spectraphysics_laser = ["napari.yaml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+qt_api = "pyqt6"

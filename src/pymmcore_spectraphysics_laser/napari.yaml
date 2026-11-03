@@ -1,0 +1,10 @@
+name: pymmcore-spectraphysics-laser
+display_name: Spectra-Physics Laser
+contributions:
+  commands:
+    - id: pymmcore-spectraphysics-laser.control
+      title: Spectra-Physics laser control (status, wavelength, shutters)
+      python_name: pymmcore_spectraphysics_laser:LaserControlWidget
+  widgets:
+    - command: pymmcore-spectraphysics-laser.control
+      display_name: Laser Control
